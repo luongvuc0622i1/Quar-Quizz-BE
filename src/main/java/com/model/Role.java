@@ -7,4 +7,5 @@ import javax.persistence.Entity;
 //@Entity
 //@Data
 public class Role{
+    //
 }
