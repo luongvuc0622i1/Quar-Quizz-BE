@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/test")
+@RequestMapping("/tests")
 public class TestController {
     @Autowired
     private ITestService testService;
@@ -23,7 +23,7 @@ public class TestController {
         return new ResponseEntity<>(testList, HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     public ResponseEntity<Test> add(@RequestBody Test test) {
         return new ResponseEntity<>(testService.save(test), HttpStatus.CREATED);
     }
