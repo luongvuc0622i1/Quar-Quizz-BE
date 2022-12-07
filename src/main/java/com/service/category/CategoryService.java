@@ -9,24 +9,24 @@ import java.util.Optional;
 @Service
 public class CategoryService implements ICategory{
     @Autowired
-    private ICategoryRepository CategoryRepository;
+    private ICategoryRepository categoryRepository;
     @Override
     public Iterable<Category> findAll() {
-        return CategoryRepository.findAll();
+        return categoryRepository.findAll();
     }
 
     @Override
     public Optional<Category> findById(Long id) {
-        return CategoryRepository.findById(id);
+        return categoryRepository.findById(id);
     }
 
     @Override
     public Category save(Category model) {
-        return CategoryRepository.save(model);
+        return categoryRepository.save(model);
     }
 
     @Override
     public void remove(Long id) {
-        CategoryRepository.deleteById(id);
+        categoryRepository.deleteById(id);
     }
 }
