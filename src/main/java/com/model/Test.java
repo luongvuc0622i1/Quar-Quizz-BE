@@ -21,11 +21,10 @@ public class Test {
     @NotNull
     private Set<Quiz> quizzes;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "test_level",joinColumns = {@JoinColumn(name = "test_id")},
-            inverseJoinColumns = {@JoinColumn(name = "level_id")})
+    @ManyToOne
+    @JoinColumn(name = "level_id")
     @NotNull
-    private Set<Level> levels;
+    private Level level;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "test_category",joinColumns = {@JoinColumn(name = "test_id")},
@@ -34,8 +33,8 @@ public class Test {
     private Set<Category> categories;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "test_typeTest",joinColumns = {@JoinColumn(name = "test_id")},
-            inverseJoinColumns = {@JoinColumn(name = "typeTest_id")})
+    @JoinTable(name = "test_typetest",joinColumns = {@JoinColumn(name = "test_id")},
+            inverseJoinColumns = {@JoinColumn(name = "typetest_id")})
     @NotNull
     private Set<TypeTest> typeTests;
     @NotNull
