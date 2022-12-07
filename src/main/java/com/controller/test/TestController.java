@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/test")
@@ -26,15 +28,15 @@ public class TestController {
         return new ResponseEntity<>(testService.save(test), HttpStatus.CREATED);
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Wallet> findWalletById(@PathVariable Long id) {
-//        Optional<Wallet> walletOptional = walletService.findById(id);
-//        if (!walletOptional.isPresent()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(walletOptional.get(), HttpStatus.OK);
-//    }
-//
+    @GetMapping("/{id}")
+    public ResponseEntity<Test> findWalletById(@PathVariable Long id) {
+        Optional<Test> testOptional = testService.findById(id);
+        if (!testOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(testOptional.get(), HttpStatus.OK);
+    }
+
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<Wallet> deleteWallet(@PathVariable Long id) {
 //        Optional<Wallet> walletDelete = walletService.findById(id);
