@@ -16,14 +16,15 @@ public interface IQuizRepository extends PagingAndSortingRepository<Quiz, Long>,
 
     Page<Quiz> findAll(Pageable pageable);
 
-//    @Query(value = "select q.id,q.name from quiz_category qc join quiz q on  qc.quiz_id= q.id join category c on\n" +
-//            "    qc.category_id = c.id where c.name LIKE :addefff" ,nativeQuery = true)
-//    Iterable<Quiz> findQuizzesByCategoriesContaining (@Param("position") String position);
+    @Query(value = "select q.id,q.name,c.category_name from quiz_category qc join quiz q on  qc.quiz_id= q.id join category c on\n" +
+            "    qc.category_id = c.id where c.name LIKE '%category%'" ,nativeQuery = true)
+    Iterable<Quiz> findQuizzesByCategoriesContaining (@Param("category") String category);
 
-//    @Query(value = "select p from Player p join Status s on p.status.id = s.id where s.status LIKE %:status%")
-//    Iterable<Quiz> findQuizzesByTypeQuizContaining (@Param("status")String status);
-//
-//    @Query(value = "select p from Player p join Status s on p.status.id = s.id where s.status LIKE %:status%")
-//    Iterable<Quiz> findQuizzesByLevelContaining (@Param("status")String status);
+    @Query(value = "select q.id,q.name,tq.name from quiz_typequiz qtq join quiz q on  qtq.quiz_id= q.id join typequiz tq on\n" +
+            "    qtq.typequiz_id = tq.id where tq.name LIKE '%type%'" ,nativeQuery = true)
+    Iterable<Quiz> findQuizzesByTypesContaining (@Param("type") String type);
+
+    @Query(value = "select q.id,q.name, l.name from quiz q join level l on  q.level_id= l.id where l.name LIKE '%level%'" ,nativeQuery = true)
+    Iterable<Quiz> findQuizzesByLevelContaining (@Param("level") String level);
 
 }

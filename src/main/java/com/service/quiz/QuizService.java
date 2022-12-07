@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class QuizService implements IQuizService{
+public class QuizService implements IQuizService {
     @Autowired
     private ICategoryRepository categoryRepository;
 
@@ -78,21 +78,23 @@ public class QuizService implements IQuizService{
 
     @Override
     public Page<Quiz> findQuizByNameContaining(String name, Pageable pageable) {
-        return quizRepository.findQuizzesByNameContaining(name,pageable);
+        return quizRepository.findQuizzesByNameContaining(name, pageable);
     }
 
     @Override
-    public Page<Quiz> findQuizByCategoryContaining(String category, Pageable pageable) {
-        return null;
+    public Iterable<Quiz> findQuizByCategoryContaining(String category) {
+        return quizRepository.findQuizzesByCategoriesContaining(category);
     }
 
     @Override
-    public Page<Quiz> findQuizByTypeContaining(String type, Pageable pageable) {
-        return null;
+    public Iterable<Quiz> findQuizByTypeContaining(String type) {
+
+        return quizRepository.findQuizzesByTypesContaining(type);
     }
 
     @Override
-    public Page<Quiz> findQuizByLevelContaining(String level, Pageable pageable) {
-        return null;
+    public Iterable<Quiz> findQuizByLevelContaining(String level) {
+
+        return quizRepository.findQuizzesByLevelContaining(level);
     }
 }

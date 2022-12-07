@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ITypeRepository extends CrudRepository<TypeQuiz,Long> {
     Page<TypeQuiz> findAll(Pageable pageable);
+
 }

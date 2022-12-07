@@ -21,10 +21,10 @@ public interface IQuizService extends IGeneralService<Quiz> {
 
     Page<Quiz> findQuizByNameContaining(String name, Pageable pageable);
 
-    Page<Quiz> findQuizByCategoryContaining(String category, Pageable pageable);
+    Iterable<Quiz> findQuizByCategoryContaining(String category);
 
-    Page<Quiz> findQuizByTypeContaining(String type, Pageable pageable);
+    Iterable<Quiz> findQuizByTypeContaining(String type);
 
-    Page<Quiz> findQuizByLevelContaining(String level, Pageable pageable);
+    Iterable<Quiz> findQuizByLevelContaining(String level);
 
 }
