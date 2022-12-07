@@ -17,10 +17,10 @@ public class Test {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "test_quizz",joinColumns = {@JoinColumn(name = "test_id")},
-            inverseJoinColumns = {@JoinColumn(name = "quizz_id")})
+    @JoinTable(name = "test_quiz",joinColumns = {@JoinColumn(name = "test_id")},
+            inverseJoinColumns = {@JoinColumn(name = "quiz_id")})
     @NotNull
-    private Set<Quizz> quizzes;
+    private Set<Quiz> quizzes;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "test_level",joinColumns = {@JoinColumn(name = "test_id")},
@@ -40,7 +40,6 @@ public class Test {
     @NotNull
     private Set<TypeTest> typeTests;
     @NotNull
-    @Column(columnDefinition = "int")
     private int passScore;
     @NotNull
     private Time maxTime;

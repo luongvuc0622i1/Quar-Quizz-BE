@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "typequizz")
-public class TypeQuizz {
+@Table(name = "typequiz")
+public class TypeQuiz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

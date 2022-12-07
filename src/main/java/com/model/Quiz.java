@@ -10,32 +10,35 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "quizz")
-public class Quizz {
+@Table(name = "quiz")
+public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 //    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "quizz_answer", joinColumns = {@JoinColumn(name = "quizz_id")},
+//    @JoinTable(name = "quiz_answer", joinColumns = {@JoinColumn(name = "quiz_id")},
 //    inverseJoinColumns ={@JoinColumn (name = "answer_id")})
 //    private Set<Answer> answer;
     @NotNull
     private String answer;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "quizz_typequizz",joinColumns = {@JoinColumn(name = "quizz_id")},
-    inverseJoinColumns = {@JoinColumn(name = "typequizz_id")})
     @NotNull
-    private Set<TypeQuizz>typeQuizzes;
+    private String correct_answer;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "quizz_category",joinColumns = {@JoinColumn(name = "quizz_id")},
+    @JoinTable(name = "quiz_typequiz",joinColumns = {@JoinColumn(name = "quiz_id")},
+    inverseJoinColumns = {@JoinColumn(name = "typequiz_id")})
+    @NotNull
+    private Set<TypeQuiz> typeQuizs;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "quiz_category",joinColumns = {@JoinColumn(name = "quiz_id")},
     inverseJoinColumns = {@JoinColumn(name = "category_id")})
     @NotNull
     private Set<Category>categories;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "quizz_test",joinColumns = {@JoinColumn(name = "quizz_id")},
+    @JoinTable(name = "quiz_test",joinColumns = {@JoinColumn(name = "quiz_id")},
             inverseJoinColumns = {@JoinColumn(name = "test_id")})
     @NotNull
     private Set<Test> tests;
