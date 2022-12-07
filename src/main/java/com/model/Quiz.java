@@ -32,10 +32,10 @@ public class Quiz {
     private Set<TypeQuiz> typeQuizzes;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "quiz_test",joinColumns = {@JoinColumn(name = "quiz_id")},
-            inverseJoinColumns = {@JoinColumn(name = "test_id")})
+    @JoinTable(name = "quiz_category",joinColumns = {@JoinColumn(name = "quiz_id")},
+    inverseJoinColumns = {@JoinColumn(name = "category_id")})
     @NotNull
-    private Set<Test> tests;
+    private Set<Category>categories;
 
     @NotNull
     private String name;
