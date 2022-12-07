@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
+import java.sql.Time;
 import java.util.Set;
 
 @Data
@@ -40,9 +40,9 @@ public class Test {
     @NotNull
     private Set<TypeTest> typeTests;
     @NotNull
-    private String passCore;
+    private int passScore;
     @NotNull
-    private Date maxTime;
+    private Time maxTime;
     @NotNull
     private String name;
 }
