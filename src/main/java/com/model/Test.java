@@ -17,10 +17,6 @@ public class Test {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(mappedBy = "tests")
-    @NotNull
-    private Set<Quiz> quizzes;
-
     @ManyToOne
     @JoinColumn(name = "level_id")
     @NotNull
