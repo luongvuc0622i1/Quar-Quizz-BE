@@ -14,10 +14,12 @@ public class Quizz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "quizz_answer", joinColumns = {@JoinColumn(name = "quizz_id")},
-    inverseJoinColumns ={@JoinColumn (name = "answer_id")})
-    private Set<Answer> answer;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "quizz_answer", joinColumns = {@JoinColumn(name = "quizz_id")},
+//    inverseJoinColumns ={@JoinColumn (name = "answer_id")})
+//    private Set<Answer> answer;
+
+    private String answer;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "quizz_typequizz",joinColumns = {@JoinColumn(name = "quizz_id")},
