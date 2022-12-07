@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.util.Set;
 
@@ -18,23 +19,30 @@ public class Test {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "test_quizz",joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "quizz_id")})
+    @NotNull
     private Set<Quizz> quizzes;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "test_level",joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "level_id")})
+    @NotNull
     private Set<Level> levels;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "test_category",joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")})
+    @NotNull
     private Set<Category> categories;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "test_typeTest",joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "typeTest_id")})
+    @NotNull
     private Set<TypeTest> typeTests;
+    @NotNull
     private String passCore;
+    @NotNull
     private Date maxTime;
+    @NotNull
     private String name;
 }
