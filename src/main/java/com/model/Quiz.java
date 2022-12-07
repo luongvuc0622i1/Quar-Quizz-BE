@@ -29,7 +29,7 @@ public class Quiz {
     @JoinTable(name = "quiz_typequiz",joinColumns = {@JoinColumn(name = "quiz_id")},
     inverseJoinColumns = {@JoinColumn(name = "typequiz_id")})
     @NotNull
-    private Set<TypeQuiz> typeQuizs;
+    private Set<TypeQuiz> typeQuizzes;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "quiz_category",joinColumns = {@JoinColumn(name = "quiz_id")},
@@ -42,6 +42,7 @@ public class Quiz {
             inverseJoinColumns = {@JoinColumn(name = "test_id")})
     @NotNull
     private Set<Test> tests;
+
     @NotNull
     private String name;
     @ManyToOne

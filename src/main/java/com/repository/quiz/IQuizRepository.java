@@ -16,9 +16,9 @@ public interface IQuizRepository extends PagingAndSortingRepository<Quiz, Long>,
 
     Page<Quiz> findAll(Pageable pageable);
 
-    @Query(value = "select q.id,q.name from quiz_category qc join quiz q on  qc.quiz_id= q.id join category c on\n" +
-            "    qc.category_id = c.id where c.name LIKE :addefff" ,nativeQuery = true)
-    Iterable<Quiz> findQuizzesByCategoriesContaining (@Param("position") String position);
+//    @Query(value = "select q.id,q.name from quiz_category qc join quiz q on  qc.quiz_id= q.id join category c on\n" +
+//            "    qc.category_id = c.id where c.name LIKE :addefff" ,nativeQuery = true)
+//    Iterable<Quiz> findQuizzesByCategoriesContaining (@Param("position") String position);
 
 //    @Query(value = "select p from Player p join Status s on p.status.id = s.id where s.status LIKE %:status%")
 //    Iterable<Quiz> findQuizzesByTypeQuizContaining (@Param("status")String status);

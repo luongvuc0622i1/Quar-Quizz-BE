@@ -2,7 +2,7 @@ package com.service.quiz;
 
 import com.model.*;
 import com.repository.ILevelRepository;
-import com.repository.quiz.ICategoryRepository;
+import com.repository.category.ICategoryRepository;
 import com.repository.quiz.IQuizRepository;
 import com.repository.quiz.ITypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

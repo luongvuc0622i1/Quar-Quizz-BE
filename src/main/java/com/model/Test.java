@@ -16,9 +16,8 @@ public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "test_quiz",joinColumns = {@JoinColumn(name = "test_id")},
-            inverseJoinColumns = {@JoinColumn(name = "quiz_id")})
+
+    @ManyToMany(mappedBy = "tests")
     @NotNull
     private Set<Quiz> quizzes;
 
