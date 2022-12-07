@@ -23,6 +23,12 @@ public class Test {
     private Level level;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "quiz_test",joinColumns = {@JoinColumn(name = "test_id")},
+            inverseJoinColumns = {@JoinColumn(name = "quiz_id")})
+    @NotNull
+    private Set<Quiz> quizzes;
+
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "test_category",joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")})
     @NotNull
