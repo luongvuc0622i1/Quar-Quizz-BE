@@ -32,11 +32,11 @@ public class Test {
     @NotNull
     private Set<Category> categories;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "test_typetest",joinColumns = {@JoinColumn(name = "test_id")},
-            inverseJoinColumns = {@JoinColumn(name = "typetest_id")})
-    @NotNull
-    private Set<TypeTest> typeTests;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "test_typetest",joinColumns = {@JoinColumn(name = "test_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "typetest_id")})
+//    @NotNull
+//    private Set<TypeTest> typeTests;
     @NotNull
     private int passScore;
     @NotNull
