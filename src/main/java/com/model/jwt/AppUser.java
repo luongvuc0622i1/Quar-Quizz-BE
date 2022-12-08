@@ -21,13 +21,16 @@ public class AppUser {
 
     @Column(columnDefinition = "varchar(255)",unique = true,nullable = false)
     @Email
+//    @Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9\\\\+_-]+(\\\\.[A-Za-z0-9\\\\+_-]+)*@\" \n" +
+//            "        + \"[^-][A-Za-z0-9\\\\+-]+(\\\\.[A-Za-z0-9\\\\+-]+)*(\\\\.[A-Za-z]{2,})$")
     private String email;
 
     @Column(columnDefinition = "varchar(255)",unique = true,nullable = false)
     private String username;
 
     @Column(nullable = false)
-    @Pattern(regexp = "^([A-Z]{1})([a-z]{4,})([0-9]{1,})")
+//    @Pattern(regexp = "^([A-Z]{1})([a-z]{4,})([0-9]{1,})")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
