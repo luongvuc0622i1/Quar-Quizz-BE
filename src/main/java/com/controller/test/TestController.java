@@ -1,5 +1,6 @@
 package com.controller.test;
 
+import com.model.Category;
 import com.model.Test;
 import com.service.test.ITestService;
 import org.springframework.beans.factory.annotation.Autowired;
