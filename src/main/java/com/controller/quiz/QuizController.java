@@ -18,13 +18,20 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/quiz")
+@RequestMapping("/quizzes")
 public class QuizController {
 
     @Autowired
-    IQuizService quizService;
+    public IQuizService quizService;
 
-    @GetMapping("/list")
+    @GetMapping("")
+    public ResponseEntity<Iterable<Quiz>> getAll() {
+        Iterable<Quiz> testList = quizService.findAll();
+        System.out.println(testList);
+        return new ResponseEntity<>(testList, HttpStatus.OK);
+    }
+
+    @GetMapping("/page")
     public ResponseEntity<Page<Quiz>> showPageQuiz(@PageableDefault(value = 10) Pageable pageable) {
         Page<Quiz> quizzes = quizService.findQuizPage(pageable);
         if (!quizzes.iterator().hasNext()) {
@@ -33,13 +40,13 @@ public class QuizController {
         return new ResponseEntity<>(quizzes, HttpStatus.OK);
     }
 
-    @GetMapping("/findByID/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Quiz> getQuizById(@PathVariable Long id) {
         Optional<Quiz> QuizOptional = quizService.findById(id);
         return QuizOptional.map(Quiz -> new ResponseEntity<>(Quiz, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Quiz> editQuiz(@PathVariable Long id, @RequestBody Quiz Quiz) {
         Optional<Quiz> QuizOptional = quizService.findById(id);
         if (!QuizOptional.isPresent()) {
@@ -50,7 +57,7 @@ public class QuizController {
         return new ResponseEntity<>(Quiz, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Quiz> deleteQuiz(@PathVariable Long id) {
         Optional<Quiz> QuizOptional = quizService.findById(id);
         if (!QuizOptional.isPresent()) {
@@ -60,20 +67,20 @@ public class QuizController {
         return new ResponseEntity<>(QuizOptional.get(), HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Quiz> createQuiz(@ModelAttribute Quiz quiz) {
+    @PostMapping("")
+    public ResponseEntity<Quiz> createQuiz(@RequestBody Quiz quiz) {
         return new ResponseEntity<>(quizService.save(quiz), HttpStatus.CREATED);
     }
 
 
-    @GetMapping("/category")
-    public ResponseEntity<Page<Category>> getCategory(Pageable pageable) {
-        Page<Category> quizCategories = quizService.findAllCategory(pageable);
-        if (!quizCategories.iterator().hasNext()) {
-            new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(quizCategories, HttpStatus.OK);
-    }
+//    @GetMapping("/category")
+//    public ResponseEntity<Page<Category>> getCategory(Pageable pageable) {
+//        Page<Category> quizCategories = quizService.findAllCategory(pageable);
+//        if (!quizCategories.iterator().hasNext()) {
+//            new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//        return new ResponseEntity<>(quizCategories, HttpStatus.OK);
+//    }
 
     @GetMapping("/type")
     public ResponseEntity<Page<TypeQuiz>> getQuizType(Pageable pageable) {
@@ -93,8 +100,8 @@ public class QuizController {
         return new ResponseEntity<>(quizLevel, HttpStatus.OK);
     }
 
-    @GetMapping("/searchName")
-    public ResponseEntity<Iterable<Quiz>> getQuizByName(@RequestParam("name") String name) {
+    @GetMapping("/searchByName")
+    public ResponseEntity<Iterable<Quiz>> getQuizByName(@RequestParam ("name") String name) {
         Iterable<Quiz> quizzes = quizService.findAllQuizByName(name);
         if (!quizzes.iterator().hasNext()) {
             new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -102,9 +109,9 @@ public class QuizController {
         return new ResponseEntity<>(quizzes, HttpStatus.OK);
     }
 
-    @GetMapping("/searchNamePage")
+    @GetMapping("/searchName")
     public ResponseEntity<Page<Quiz>> searchPageQuiz(@PageableDefault(value = 10) Pageable pageable, @RequestParam("name") String name) {
-        Page<Quiz> quizzes = quizService.findQuizPage(pageable);
+        Page<Quiz> quizzes = quizService.findQuizByNameContaining(name, pageable);
         if (!quizzes.iterator().hasNext()) {
             new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
