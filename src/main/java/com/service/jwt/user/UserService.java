@@ -68,4 +68,8 @@ public class UserService implements IUserService {
         return userRepository.existsByEmail(email);
     }
 
+    @Override
+    public AppUser findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 }

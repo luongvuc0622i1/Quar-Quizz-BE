@@ -36,4 +36,7 @@ public class AppUser {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
+    @Column(columnDefinition = "varchar(255)", nullable = false)
+    private String status;
+
 }

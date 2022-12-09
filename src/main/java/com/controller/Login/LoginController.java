@@ -44,7 +44,7 @@ public class LoginController {
     private IRoleService roleService;
 
     @PostMapping("/login")
-    public ResponseEntity<JwtResponse> login(@Valid @RequestBody LoginForm loginForm) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginForm loginForm) {
         try {
             // Tạo 1 đối tượng authentication
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginForm.getUsername(), loginForm.getPassword()));
@@ -53,10 +53,20 @@ public class LoginController {
             String token = jwtService.createToken(authentication);
             AppUser user1 = userService.getUserByUsername(loginForm.getUsername());
             JwtResponse jwtResponse = new JwtResponse(user1.getId(), user1.getUsername(), token, user1.getRoles());
+            AppUser account = userService.findByUsername(loginForm.getUsername());
+
+            if (account.getStatus() != null) {
+                String status = account.getStatus();
+                if ("0".equals(status)) {
+                    return ResponseEntity.ok(new MessageResponse("lock"));
+                }
+            }
+
             return new ResponseEntity<>(jwtResponse, HttpStatus.ACCEPTED);
+
         } catch (Exception e) {
             System.out.println("Loi khi dang nhap");
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -96,7 +106,7 @@ public class LoginController {
         }
         userService.save(userFace);
         LoginForm loginForm = new LoginForm(userFace.getUsername(), userFace.getPassword());
-        ResponseEntity<JwtResponse> jwtResponseResponseEntity = login(loginForm);
+        ResponseEntity<JwtResponse> jwtResponseResponseEntity = (ResponseEntity<JwtResponse>) login(loginForm);
         return jwtResponseResponseEntity;
     }
 
