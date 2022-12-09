@@ -5,6 +5,7 @@ import com.model.dto.JwtResponse;
 import com.model.dto.LoginForm;
 import com.model.dto.TokenDto;
 import com.model.jwt.AppUser;
+import com.model.jwt.MessageResponse;
 import com.model.jwt.Role;
 import com.service.jwt.JwtService;
 import com.service.jwt.role.IRoleService;
@@ -60,13 +61,17 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AppUser> register(@Valid @RequestBody AppUser user) {
+    public ResponseEntity<?> register(@Valid @RequestBody AppUser user) {
         if (userService.getUserByUsername(user.getUsername()) == null) {
             Set<Role> roles = new HashSet<>();
             roles.add(roleService.findById(3L).get());
             user.setRoles(roles);
             AppUser appUser = userService.save(user);
             return new ResponseEntity<>(appUser, HttpStatus.OK);
+        } if (userService.existsByUsername(user.getUsername())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("nouser"));
+        } if (userService.existsByEmail(user.getEmail())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("noemail"));
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }

@@ -11,4 +11,9 @@ public interface IUserService extends IGeneralService<AppUser>, UserDetailsServi
     AppUser getUserByUsername(String username);
 
     AppUser findAppUserByEmail(String email);
+
+    boolean existsByUsername(String username);
+
+    boolean existsByEmail(String email);
+
 }
