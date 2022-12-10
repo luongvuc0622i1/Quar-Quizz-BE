@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @PutMapping("/{id}")
+    @PutMapping("/changePassword/{id}")
     public ResponseEntity<AppUser> changePassword(@PathVariable Long id, @Valid @RequestBody ChangPasswordDTO changPasswordDTO) {
         Optional<AppUser> userOptional = userService.findById(id);
         if (!userOptional.isPresent()) {
