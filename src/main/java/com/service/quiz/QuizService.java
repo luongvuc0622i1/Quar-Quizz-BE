@@ -52,8 +52,8 @@ public class QuizService implements IQuizService {
     }
 
     @Override
-    public Page<TypeQuiz> findAllTypeQuiz(Pageable pageable) {
-        return typeRepository.findAll(pageable);
+    public Iterable<TypeQuiz> findAllTypeQuiz() {
+        return typeRepository.findAll();
     }
 
     @Override

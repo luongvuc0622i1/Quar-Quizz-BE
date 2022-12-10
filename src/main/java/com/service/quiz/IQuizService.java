@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public interface IQuizService extends IGeneralService<Quiz> {
     Page<Category> findAllCategory(Pageable pageable);
 
-    Page<TypeQuiz> findAllTypeQuiz(Pageable pageable);
+    Iterable<TypeQuiz> findAllTypeQuiz();
 
     Page<Level> findAllLevel(Pageable pageable);
 

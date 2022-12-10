@@ -83,8 +83,8 @@ public class QuizController {
 //    }
 
     @GetMapping("/type")
-    public ResponseEntity<Page<TypeQuiz>> getQuizType(Pageable pageable) {
-        Page<TypeQuiz> quizTypes = quizService.findAllTypeQuiz(pageable);
+    public ResponseEntity<Iterable<TypeQuiz>> getQuizType() {
+        Iterable<TypeQuiz> quizTypes = quizService.findAllTypeQuiz();
         if (!quizTypes.iterator().hasNext()) {
             new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
