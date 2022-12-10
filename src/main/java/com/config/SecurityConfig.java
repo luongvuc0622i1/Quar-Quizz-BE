@@ -39,8 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/login", "/register", "/home**").permitAll()
                 .and().authorizeRequests().antMatchers("/admin/**").hasAuthority("ADMIN")
-                .and().authorizeRequests().antMatchers("/trainer/**").hasAnyAuthority("ADMIN","MANAGER")
-                .and().authorizeRequests().antMatchers("/player/**").hasAnyAuthority("ADMIN","MANAGER","USER")
+                .and().authorizeRequests().antMatchers("/manager/**").hasAnyAuthority("ADMIN","MANAGER")
+                .and().authorizeRequests().antMatchers("/user/**").hasAnyAuthority("ADMIN","MANAGER","USER")
                 .and().csrf().disable();
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

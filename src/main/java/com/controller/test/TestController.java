@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/tests")
+@RequestMapping("manager/tests")
 public class TestController {
     @Autowired
     private ITestService testService;
