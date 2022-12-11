@@ -46,7 +46,7 @@ public class QuizController {
         return QuizOptional.map(Quiz -> new ResponseEntity<>(Quiz, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/edit/{id}")
     public ResponseEntity<Quiz> editQuiz(@PathVariable Long id, @RequestBody Quiz Quiz) {
         Optional<Quiz> QuizOptional = quizService.findById(id);
         if (!QuizOptional.isPresent()) {
@@ -57,7 +57,7 @@ public class QuizController {
         return new ResponseEntity<>(Quiz, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Quiz> deleteQuiz(@PathVariable Long id) {
         Optional<Quiz> QuizOptional = quizService.findById(id);
         if (!QuizOptional.isPresent()) {
