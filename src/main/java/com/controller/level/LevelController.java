@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/levels")
+@RequestMapping("/manager/levels")
 public class LevelController {
     @Autowired
     private ILevelService levelService;

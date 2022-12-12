@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/quizzes")
+@RequestMapping("/manager/quizzes")
 public class QuizController {
 
     @Autowired
