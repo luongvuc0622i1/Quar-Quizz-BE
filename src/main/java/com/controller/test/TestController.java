@@ -12,24 +12,24 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("manager/tests")
+@RequestMapping("")
 public class TestController {
     @Autowired
     private ITestService testService;
 
-    @GetMapping("")
+    @GetMapping("user/tests")
     public ResponseEntity<Iterable<Test>> getAll() {
         Iterable<Test> testList = testService.findAll();
         System.out.println(testList);
         return new ResponseEntity<>(testList, HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("manager/tests")
     public ResponseEntity<Test> add(@RequestBody Test test) {
         return new ResponseEntity<>(testService.save(test), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("user/tests/{id}")
     public ResponseEntity<Test> findById(@PathVariable Long id) {
         Optional<Test> optional = testService.findById(id);
         if (!optional.isPresent()) {
@@ -37,25 +37,4 @@ public class TestController {
         }
         return new ResponseEntity<>(optional.get(), HttpStatus.OK);
     }
-
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Wallet> deleteWallet(@PathVariable Long id) {
-//        Optional<Wallet> walletDelete = walletService.findById(id);
-//        if (!walletDelete.isPresent()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        walletDelete.get().setStatus(0);
-//        walletService.save(walletDelete.get());
-//        return new ResponseEntity<>(walletDelete.get(), HttpStatus.NO_CONTENT);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Wallet> editWallet(@PathVariable Long id, @RequestBody Wallet wallet) {
-//        Optional<Wallet> walletOptional = walletService.findById(id);
-//        if (!walletOptional.isPresent()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        wallet.setId(walletOptional.get().getId());
-//        return new ResponseEntity<>(walletService.save(wallet), HttpStatus.OK);
-//    }
 }
