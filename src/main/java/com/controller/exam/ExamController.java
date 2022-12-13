@@ -1,8 +1,6 @@
 package com.controller.exam;
 
-import com.model.Category;
 import com.model.ExamTest;
-import com.service.exam.ExamTestService;
 import com.service.exam.IExamTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,12 +21,13 @@ public class ExamController {
     private IExamTestService examTestService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Iterable<ExamTest>> FormCategory (){
-        List<ExamTest> categoryList= (List<ExamTest>) examTestService.findAll();
-        if(categoryList.isEmpty()){
+    public ResponseEntity<Iterable<ExamTest>> getAllExamTest (){
+        List<ExamTest> examTestList= (List<ExamTest>) examTestService.findAll();
+        if(examTestList.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(categoryList,HttpStatus.OK);
+        return new ResponseEntity<>(examTestList,HttpStatus.OK);
     }
+
 
 }

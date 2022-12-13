@@ -1,32 +1,36 @@
 package com.model;
 
+import com.model.jwt.AppUser;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "exam_test")
+@Table(name = "examTest")
 public class ExamTest {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private int scoreUser;
 
-    @NotNull
     private int checkScore;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "examQuiz_examTest",joinColumns = {@JoinColumn(name = "examTest_id")},
+            inverseJoinColumns = {@JoinColumn(name = "examQuiz_id")})
+    @NotNull
+    private Set<ExamQuiz> examQuizzes;
 
-
+    @ManyToOne
+    @JoinColumn(name = "appUser_id")
+    @NotNull
+    private AppUser appUser;
 
 }

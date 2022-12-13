@@ -1,7 +1,7 @@
 package com.service.exam;
 
 import com.model.ExamTest;
-import com.repository.exam.ExamTestRepository;
+import com.repository.exam.IExamTestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 public class ExamTestService implements IExamTestService{
 
     @Autowired
-    private ExamTestRepository examTestRepository;
+    private IExamTestRepository examTestRepository;
 
     @Override
     public Iterable<ExamTest> findAll() {
