@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("manager/categories")
+@RequestMapping("/manager/categories")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;

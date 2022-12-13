@@ -16,4 +16,5 @@ public class Level {
     private Long id;
     @NotNull
     private String name;
+
 }
