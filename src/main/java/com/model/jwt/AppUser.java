@@ -39,4 +39,6 @@ public class AppUser {
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String status;
 
+
+
 }

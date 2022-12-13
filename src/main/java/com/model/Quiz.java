@@ -42,4 +42,6 @@ public class Quiz {
     @JoinColumn(name = "level_id")
     @NotNull
     private Level level;
+    @OneToOne(mappedBy = "quiz")
+    private ExamQuiz examQuiz;
 }
