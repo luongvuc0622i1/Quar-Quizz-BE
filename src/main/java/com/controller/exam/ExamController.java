@@ -1,6 +1,8 @@
 package com.controller.exam;
 
+import com.model.ExamQuiz;
 import com.model.ExamTest;
+import com.model.Quiz;
 import com.service.exam.IExamTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -30,6 +33,12 @@ public class ExamController {
     public ResponseEntity<Iterable<ExamTest>> findExamTestByUserId(@PathVariable Long id) {
         Iterable<ExamTest> examTests = examTestService.findExamTestsByUserId(id);
         return new ResponseEntity<>(examTests, HttpStatus.OK);
+    }
+
+    @GetMapping("/findExamTestsById/{id}")
+    public ResponseEntity<ExamTest> findExamTestsById(@PathVariable Long id) {
+        Optional<ExamTest> examTestOptional = examTestService.findById(id);
+        return examTestOptional.map(ExamTest -> new ResponseEntity<>(ExamTest, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
 

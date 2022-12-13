@@ -20,17 +20,17 @@ public class ExamTestService implements IExamTestService{
 
     @Override
     public Optional<ExamTest> findById(Long id) {
-        return Optional.empty();
+        return examTestRepository.findById(id);
     }
 
     @Override
     public ExamTest save(ExamTest model) {
-        return null;
+        return examTestRepository.save(model);
     }
 
     @Override
     public void remove(Long id) {
-
+        examTestRepository.deleteById(id);
     }
 
     @Override

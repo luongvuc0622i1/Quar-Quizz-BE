@@ -19,16 +19,16 @@ public class ExamQuizService implements IExamQuizService{
 
     @Override
     public Optional<ExamQuiz> findById(Long id) {
-        return Optional.empty();
+        return examQuizRepository.findById(id);
     }
 
     @Override
     public ExamQuiz save(ExamQuiz model) {
-        return null;
+        return examQuizRepository.save(model);
     }
 
     @Override
     public void remove(Long id) {
-
+        examQuizRepository.deleteById(id);
     }
 }
