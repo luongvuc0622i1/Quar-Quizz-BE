@@ -26,11 +26,11 @@ public class ExamController {
         return new ResponseEntity<>(examTestList,HttpStatus.OK);
     }
 
-//    @GetMapping("/findExamTestByUserId/{id}")
-//    public ResponseEntity<Iterable<ExamTest>> findExamTestByUserId(@PathVariable Long id) {
-//        Iterable<ExamTest> examTests = examTestService.findExamTestsByUserId(id);
-//        return new ResponseEntity<>(examTests, HttpStatus.OK);
-//    }
+    @GetMapping("/findExamTestByUserId/{id}")
+    public ResponseEntity<Iterable<ExamTest>> findExamTestByUserId(@PathVariable Long id) {
+        Iterable<ExamTest> examTests = examTestService.findExamTestsByUserId(id);
+        return new ResponseEntity<>(examTests, HttpStatus.OK);
+    }
 
 
 }
