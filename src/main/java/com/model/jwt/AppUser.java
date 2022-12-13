@@ -48,9 +48,4 @@ public class AppUser {
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String status;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_examTest",joinColumns = {@JoinColumn(name = "appUser_id")},
-            inverseJoinColumns = {@JoinColumn(name = "examTest_id")})
-    private Set<ExamTest> examTests;
-
 }
