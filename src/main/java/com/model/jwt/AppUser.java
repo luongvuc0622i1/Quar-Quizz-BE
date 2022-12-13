@@ -1,5 +1,6 @@
 package com.model.jwt;
 
+import com.model.ExamTest;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -36,9 +37,20 @@ public class AppUser {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
+    private String ava;
+
+    private String name;
+
+    private String address;
+
+    private String phone;
+
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String status;
 
-
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_examTest",joinColumns = {@JoinColumn(name = "appUser_id")},
+            inverseJoinColumns = {@JoinColumn(name = "examTest_id")})
+    private Set<ExamTest> examTests;
 
 }

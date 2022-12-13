@@ -28,9 +28,4 @@ public class ExamTest {
     @NotNull
     private Set<ExamQuiz> examQuizzes;
 
-    @ManyToOne
-    @JoinColumn(name = "appUser_id")
-    @NotNull
-    private AppUser appUser;
-
 }
