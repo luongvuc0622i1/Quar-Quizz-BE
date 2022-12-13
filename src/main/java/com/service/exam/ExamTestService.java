@@ -33,8 +33,8 @@ public class ExamTestService implements IExamTestService{
 
     }
 
-//    @Override
-//    public Iterable<ExamTest> findExamTestsByUserId(Long user_id) {
-//        return examTestRepository.findExamTestsByUserId(user_id);
-//    }
+    @Override
+    public Iterable<ExamTest> findExamTestsByUserId(Long user_id) {
+        return examTestRepository.findExamTestsByAppUser(user_id);
+    }
 }

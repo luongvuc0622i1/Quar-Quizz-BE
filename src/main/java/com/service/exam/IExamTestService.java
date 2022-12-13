@@ -5,6 +5,6 @@ import com.service.IGeneralService;
 
 public interface IExamTestService extends IGeneralService<ExamTest> {
 
-//    Iterable<ExamTest> findExamTestsByUserId(Long user_id);
+    Iterable<ExamTest> findExamTestsByUserId(Long user_id);
 
 }
