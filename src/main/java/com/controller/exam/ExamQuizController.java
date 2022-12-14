@@ -1,12 +1,14 @@
 package com.controller.exam;
 
 import com.model.ExamQuiz;
+import com.model.ExamTest;
 import com.service.exam.IExamQuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,6 +18,15 @@ public class ExamQuizController {
 
     @Autowired
     private IExamQuizService examQuizService;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<Iterable<ExamQuiz>> getAllExamQuiz (){
+        List<ExamQuiz> examQuizList= (List<ExamQuiz>) examQuizService.findAll();
+        if(examQuizList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(examQuizList,HttpStatus.OK);
+    }
 
     @GetMapping("/findExamQuizById/{id}")
     public ResponseEntity<ExamQuiz> findExamQuizById(@PathVariable Long id) {
