@@ -34,17 +34,19 @@ public class ExamQuizService implements IExamQuizService{
 
     @Override
     public ExamQuiz saveExamQuiz (ExamQuiz model) {
-        examQuizRepository.save(model);
 
-        examQuizRepository.findById(model.getId());
-
-        if (model.getAnswerUser() == model.getQuiz().getCorrect_answer()) {
-//        if (model.getAnswerUser() == null) {
+        Optional<ExamQuiz> model1 = examQuizRepository.findById(model.getQuiz().getId());
+        String answerUser = model.getAnswerUser();
+        String correctAnswer = model1.get().getQuiz().getCorrect_answer();
+        if (answerUser.equals(correctAnswer)) {
             model.setStatus(1);
         } else {
             model.setStatus(0);
         }
+
         return examQuizRepository.save(model);
     }
+
+
 
 }

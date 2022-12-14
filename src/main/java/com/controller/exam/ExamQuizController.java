@@ -34,7 +34,7 @@ public class ExamQuizController {
         return examQuizOptional.map(ExamQuiz -> new ResponseEntity<>(ExamQuiz, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping("/create")
+    @PostMapping("/create")
     public ResponseEntity<ExamQuiz> createExamQuiz(@RequestBody ExamQuiz examQuiz) {
         return new ResponseEntity<>(examQuizService.saveExamQuiz(examQuiz), HttpStatus.CREATED);
     }
