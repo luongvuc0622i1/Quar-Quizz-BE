@@ -18,9 +18,7 @@ public class ExamTest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int scoreUser;
-
-    private int checkScore;
+    private int numOfTA;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "examQuiz_examTest",joinColumns = {@JoinColumn(name = "examTest_id")},

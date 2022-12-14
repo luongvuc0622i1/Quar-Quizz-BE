@@ -36,4 +36,6 @@ public class ExamQuiz {
     @NotNull
     private AppUser appUser;
 
+    private int status;
+
 }

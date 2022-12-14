@@ -31,4 +31,14 @@ public class ExamQuizService implements IExamQuizService{
     public void remove(Long id) {
         examQuizRepository.deleteById(id);
     }
+
+    public ExamQuiz saveExamQuiz (ExamQuiz model) {
+        if (model.getAnswerUser() == model.getQuiz().getCorrect_answer()) {
+            model.setStatus(1);
+        } else {
+            model.setStatus(0);
+        }
+        return examQuizRepository.save(model);
+    }
+
 }
