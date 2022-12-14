@@ -1,8 +1,6 @@
 package com.controller.exam;
 
-import com.model.ExamQuiz;
 import com.model.ExamTest;
-import com.model.Quiz;
 import com.service.exam.IExamTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +12,8 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/exam")
-public class ExamController {
+@RequestMapping("/examTest")
+public class ExamTestController {
 
     @Autowired
     private IExamTestService examTestService;
@@ -41,5 +39,30 @@ public class ExamController {
         return examTestOptional.map(ExamTest -> new ResponseEntity<>(ExamTest, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<ExamTest> createExamTest(@RequestBody ExamTest examTest) {
+        return new ResponseEntity<>(examTestService.save(examTest), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/edit")
+    public ResponseEntity<ExamTest> editExamQuiz(@PathVariable Long id, @RequestBody ExamTest examTest) {
+        Optional<ExamTest> examTestOptional = examTestService.findById(id);
+        if (!examTestOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        examTest.setId(id);
+        examTestService.save(examTest);
+        return new ResponseEntity<>(examTest, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deleteById/{id}")
+    public ResponseEntity<ExamTest> deleteExamTest(@PathVariable Long id) {
+        Optional<ExamTest> examTestOptional = examTestService.findById(id);
+        if (!examTestOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        examTestService.remove(id);
+        return new ResponseEntity<>(examTestOptional.get(), HttpStatus.NO_CONTENT);
+    }
 
 }
