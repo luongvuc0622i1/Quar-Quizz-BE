@@ -1,10 +1,12 @@
 package com.model;
 
+import com.model.jwt.AppUser;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Optional;
 
 @Data
 @NoArgsConstructor
@@ -29,5 +31,9 @@ public class ExamQuiz {
     @NotNull
     private String answerUser;
 
+    @ManyToOne
+    @JoinColumn(name = "appUser_id")
+    @NotNull
+    private AppUser appUser;
 
 }
