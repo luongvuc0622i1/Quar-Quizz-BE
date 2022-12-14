@@ -32,6 +32,7 @@ public class ExamQuizService implements IExamQuizService{
         examQuizRepository.deleteById(id);
     }
 
+    @Override
     public ExamQuiz saveExamQuiz (ExamQuiz model) {
         if (model.getAnswerUser() == model.getQuiz().getCorrect_answer()) {
             model.setStatus(1);

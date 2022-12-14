@@ -25,7 +25,7 @@ public class ExamQuizController {
 
     @PutMapping("/create")
     public ResponseEntity<ExamQuiz> createExamQuiz(@RequestBody ExamQuiz examQuiz) {
-        return new ResponseEntity<>(examQuizService.save(examQuiz), HttpStatus.CREATED);
+        return new ResponseEntity<>(examQuizService.saveExamQuiz(examQuiz), HttpStatus.CREATED);
     }
 
     @PutMapping("/edit")
@@ -35,7 +35,7 @@ public class ExamQuizController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         examQuiz.setId(id);
-        examQuizService.save(examQuiz);
+        examQuizService.saveExamQuiz(examQuiz);
         return new ResponseEntity<>(examQuiz, HttpStatus.OK);
     }
 
