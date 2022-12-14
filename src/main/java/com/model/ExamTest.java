@@ -13,7 +13,6 @@ import java.util.Set;
 @Entity
 @Table(name = "examTest")
 public class ExamTest {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -17,7 +17,6 @@ public class ExamTestService implements IExamTestService{
     public Iterable<ExamTest> findAll() {
         return examTestRepository.findAll();
     }
-
     @Override
     public Optional<ExamTest> findById(Long id) {
         return examTestRepository.findById(id);
@@ -37,4 +36,6 @@ public class ExamTestService implements IExamTestService{
     public Iterable<ExamTest> findExamTestsByUserId(Long user_id) {
         return examTestRepository.findExamTestsByAppUser(user_id);
     }
+
+
 }
