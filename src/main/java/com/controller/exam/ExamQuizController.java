@@ -28,7 +28,7 @@ public class ExamQuizController {
         return new ResponseEntity<>(examQuizService.saveExamQuiz(examQuiz), HttpStatus.CREATED);
     }
 
-    @PutMapping("/edit")
+    @PutMapping("/edit/{id}")
     public ResponseEntity<ExamQuiz> editExamQuiz(@PathVariable Long id, @RequestBody ExamQuiz examQuiz) {
         Optional<ExamQuiz> examQuizOptional = examQuizService.findById(id);
         if (!examQuizOptional.isPresent()) {
