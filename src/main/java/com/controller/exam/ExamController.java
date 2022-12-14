@@ -1,5 +1,6 @@
 package com.controller.exam;
 
+import com.model.Category;
 import com.model.ExamTest;
 import com.model.jwt.AppUser;
 import com.service.category.CategoryService;
