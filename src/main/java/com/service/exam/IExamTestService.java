@@ -7,4 +7,6 @@ public interface IExamTestService extends IGeneralService<ExamTest> {
 
     Iterable<ExamTest> findExamTestsByUserId(Long user_id);
 
+    ExamTest saveExamTest (ExamTest model);
+
 }

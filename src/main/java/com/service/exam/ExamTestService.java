@@ -1,5 +1,6 @@
 package com.service.exam;
 
+import com.model.ExamQuiz;
 import com.model.ExamTest;
 import com.repository.exam.IExamTestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,17 @@ public class ExamTestService implements IExamTestService{
         return examTestRepository.findExamTestsByAppUser(user_id);
     }
 
-
-
-
+    @Override
+    public ExamTest saveExamTest(ExamTest model) {
+//            Optional<ExamQuiz> model1 = examQuizRepository.findById(model.getQuiz().getId());
+//            String answerUser = model.getAnswerUser();
+//            String correctAnswer = model1.get().getQuiz().getCorrect_answer();
+//            if (answerUser.equals(correctAnswer)) {
+//                model.setStatus(1);
+//            } else {
+//                model.setStatus(0);
+//            }
+//
+            return null;
+    }
 }

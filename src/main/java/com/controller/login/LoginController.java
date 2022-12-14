@@ -1,4 +1,4 @@
-package com.controller.Login;
+package com.controller.login;
 
 
 import com.model.dto.JwtResponse;

@@ -22,7 +22,6 @@ public class ExamTest {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "examQuiz_examTest",joinColumns = {@JoinColumn(name = "examTest_id")},
             inverseJoinColumns = {@JoinColumn(name = "examQuiz_id")})
-    @NotNull
     private Set<ExamQuiz> examQuizzes;
 
     @ManyToOne
