@@ -43,17 +43,9 @@ public class ExamTestService implements IExamTestService{
     private ExamTest examTest;
 
     @Override
-    public Optional<ExamTest> changeNumberAnswer(Optional<ExamTest> examTest) {
+    public void changeNumberAnswer(Optional<ExamTest> examTest) {
 
         Set<ExamQuiz> examQuizzes = examTest.get().getExamQuizzes();
-//        Object[] examQuiz = examQuizzes.toArray();
-//        for (int i = 0; i < examQuizzes.size(); i++) {
-//            if (examQuizzes. == 1) {
-//                count++;
-//            }
-//            examTest.get().setNumOfTA(count);
-//        }
-
         examQuizzes.forEach((e) -> {
             int count = 0;
             if (e.getStatus() == 1) {
@@ -61,14 +53,7 @@ public class ExamTestService implements IExamTestService{
             }
             examTest.get().setNumOfTA(count);
         });
-//        examTestRepository.save(examTest);
-
-        return null;
-
-    }
-
-    public ExamTest saveExamTest(ExamTest examTest) {
-        return null;
+        examTestRepository.save(examTest.get());
     }
 
 }

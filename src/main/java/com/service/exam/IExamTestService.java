@@ -9,6 +9,6 @@ public interface IExamTestService extends IGeneralService<ExamTest> {
 
     Iterable<ExamTest> findExamTestsByUserId(Long user_id);
 
-    Optional<ExamTest> changeNumberAnswer (Optional<ExamTest> examTest);
+    void changeNumberAnswer (Optional<ExamTest> examTest);
 
 }
