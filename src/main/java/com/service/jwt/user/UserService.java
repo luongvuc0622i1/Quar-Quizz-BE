@@ -72,4 +72,9 @@ public class UserService implements IUserService {
     public AppUser findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    @Override
+    public Iterable<AppUser> findAppUserByRolesUser() {
+        return userRepository.findAppUserByRolesUser();
+    }
 }

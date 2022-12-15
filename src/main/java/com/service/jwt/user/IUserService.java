@@ -19,4 +19,6 @@ public interface IUserService extends IGeneralService<AppUser>, UserDetailsServi
 
     AppUser findByUsername(String username);
 
+    Iterable<AppUser> findAppUserByRolesUser();
+
 }
