@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ExamTestService implements IExamTestService{
@@ -38,17 +39,36 @@ public class ExamTestService implements IExamTestService{
         return examTestRepository.findExamTestsByAppUser(user_id);
     }
 
+
+    private ExamTest examTest;
+
     @Override
-    public ExamTest saveExamTest(ExamTest model) {
-//            Optional<ExamQuiz> model1 = examQuizRepository.findById(model.getQuiz().getId());
-//            String answerUser = model.getAnswerUser();
-//            String correctAnswer = model1.get().getQuiz().getCorrect_answer();
-//            if (answerUser.equals(correctAnswer)) {
-//                model.setStatus(1);
-//            } else {
-//                model.setStatus(0);
+    public Optional<ExamTest> changeNumberAnswer(Optional<ExamTest> examTest) {
+
+        Set<ExamQuiz> examQuizzes = examTest.get().getExamQuizzes();
+//        Object[] examQuiz = examQuizzes.toArray();
+//        for (int i = 0; i < examQuizzes.size(); i++) {
+//            if (examQuizzes. == 1) {
+//                count++;
 //            }
-//
-            return null;
+//            examTest.get().setNumOfTA(count);
+//        }
+
+        examQuizzes.forEach((e) -> {
+            int count = 0;
+            if (e.getStatus() == 1) {
+               count++;
+            }
+            examTest.get().setNumOfTA(count);
+        });
+//        examTestRepository.save(examTest);
+
+        return null;
+
     }
+
+    public ExamTest saveExamTest(ExamTest examTest) {
+        return null;
+    }
+
 }

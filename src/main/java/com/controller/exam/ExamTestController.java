@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/user/examTest")
+@RequestMapping("/examTest")
 public class ExamTestController {
 
     @Autowired
@@ -41,7 +41,8 @@ public class ExamTestController {
 
     @PostMapping("/create")
     public ResponseEntity<ExamTest> createExamTest(@RequestBody ExamTest examTest) {
-        return new ResponseEntity<>(examTestService.save(examTest), HttpStatus.CREATED);
+        examTestService.save(examTest);
+        return new ResponseEntity<>(examTest, HttpStatus.CREATED);
     }
 
     @PutMapping("/edit")
@@ -64,5 +65,13 @@ public class ExamTestController {
         examTestService.remove(id);
         return new ResponseEntity<>(examTestOptional.get(), HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/setNumberAnswer/{id}")
+    public ResponseEntity<ExamTest> setNumberAnswer(@PathVariable Long id) {
+        Optional<ExamTest> examTestOptional = examTestService.findById(id);
+        examTestService.changeNumberAnswer(examTestOptional);
+        return examTestOptional.map(ExamTest -> new ResponseEntity<>(ExamTest, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
 
 }
