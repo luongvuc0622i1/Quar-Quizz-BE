@@ -1,5 +1,6 @@
 package com.controller.user;
 
+import com.model.Quiz;
 import com.model.dto.ChangPasswordDTO;
 import com.model.jwt.AppUser;
 import com.service.jwt.user.IUserService;
@@ -40,6 +41,20 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(optional.get(), HttpStatus.OK);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<Iterable<AppUser>> getAll() {
+        Iterable<AppUser> userList = userService.findAll();
+        System.out.println(userList);
+        return new ResponseEntity<>(userList, HttpStatus.OK);
+    }
+
+    @GetMapping("/user/getUserRoles")
+    public ResponseEntity<Iterable<AppUser>> getAppUserByRoleUser() {
+        Iterable<AppUser> userList = userService.findAppUserByRolesUser();
+        System.out.println(userList);
+        return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
 }
