@@ -28,13 +28,13 @@ public class ExamQuizController {
         return new ResponseEntity<>(examQuizList,HttpStatus.OK);
     }
 
-    @GetMapping("/findExamQuizById/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ExamQuiz> findExamQuizById(@PathVariable Long id) {
         Optional<ExamQuiz> examQuizOptional = examQuizService.findById(id);
         return examQuizOptional.map(ExamQuiz -> new ResponseEntity<>(ExamQuiz, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/create")
+    @PostMapping("/")
     public ResponseEntity<ExamQuiz> createExamQuiz(@RequestBody ExamQuiz examQuiz) {
         examQuizService.save(examQuiz);
         Optional<ExamQuiz> examQuizOptional = examQuizService.findById(examQuiz.getId());
@@ -42,7 +42,7 @@ public class ExamQuizController {
         return new ResponseEntity<>(examQuiz, HttpStatus.CREATED);
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ExamQuiz> editExamQuiz(@PathVariable Long id, @RequestBody ExamQuiz examQuiz) {
         Optional<ExamQuiz> examQuizOptional = examQuizService.findById(id);
         if (!examQuizOptional.isPresent()) {
@@ -53,7 +53,7 @@ public class ExamQuizController {
         return new ResponseEntity<>(examQuiz, HttpStatus.OK);
     }
 
-    @DeleteMapping("/deleteById/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ExamQuiz> deleteExamQuiz(@PathVariable Long id) {
         Optional<ExamQuiz> examQuizOptional = examQuizService.findById(id);
         if (!examQuizOptional.isPresent()) {
