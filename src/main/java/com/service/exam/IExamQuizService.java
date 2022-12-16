@@ -3,6 +3,8 @@ package com.service.exam;
 import com.model.ExamQuiz;
 import com.service.IGeneralService;
 
+import java.util.Optional;
+
 public interface IExamQuizService extends IGeneralService<ExamQuiz> {
-    ExamQuiz saveExamQuiz (ExamQuiz model);
+    void saveExamQuiz (Optional<ExamQuiz> model);
 }

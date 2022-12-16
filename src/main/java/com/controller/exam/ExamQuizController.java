@@ -36,7 +36,10 @@ public class ExamQuizController {
 
     @PostMapping("/create")
     public ResponseEntity<ExamQuiz> createExamQuiz(@RequestBody ExamQuiz examQuiz) {
-        return new ResponseEntity<>(examQuizService.saveExamQuiz(examQuiz), HttpStatus.CREATED);
+        examQuizService.save(examQuiz);
+        Optional<ExamQuiz> examQuizOptional = examQuizService.findById(examQuiz.getId());
+        examQuizService.saveExamQuiz(examQuizOptional);
+        return new ResponseEntity<>(examQuiz, HttpStatus.CREATED);
     }
 
     @PutMapping("/edit/{id}")
@@ -46,7 +49,7 @@ public class ExamQuizController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         examQuiz.setId(id);
-        examQuizService.saveExamQuiz(examQuiz);
+        examQuizService.save(examQuiz);
         return new ResponseEntity<>(examQuiz, HttpStatus.OK);
     }
 
