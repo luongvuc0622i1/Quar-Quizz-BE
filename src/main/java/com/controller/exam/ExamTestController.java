@@ -39,7 +39,7 @@ public class ExamTestController {
         return examTestOptional.map(ExamTest -> new ResponseEntity<>(ExamTest, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<ExamTest> createExamTest(@RequestBody ExamTest examTest) {
         examTestService.save(examTest);
         Optional<ExamTest> examTestOptional = examTestService.findById(examTest.getId());
