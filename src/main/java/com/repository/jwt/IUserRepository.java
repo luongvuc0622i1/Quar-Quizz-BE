@@ -43,4 +43,5 @@ public interface IUserRepository extends JpaRepository<AppUser, Long> {
     @Modifying
     @Query(value = "UPDATE users_roles join users on users_roles.app_user_id = users.id set users_roles.roles_id = 3 where users.username = :'name'", nativeQuery = true )
     Iterable<AppUser> changeUser(String name);
+    AppUser findByEmail(String email);
 }
