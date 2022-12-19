@@ -2,7 +2,9 @@ package com.repository.jwt;
 
 import com.model.jwt.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -20,5 +22,10 @@ public interface IUserRepository extends JpaRepository<AppUser, Long> {
             "JOIN role ON users_roles.roles_id = role.id " +
             "WHERE roles_id = 3;")
     Iterable<AppUser> findAppUserByRolesUser();
-
+    @Modifying
+    @Query(value = "UPDATE users SET status = '1' WHERE id = :statusId", nativeQuery = true)
+    void openAccountById(Long statusId);
+    @Modifying
+    @Query(value = "UPDATE users SET status = '0' WHERE id = :statusId", nativeQuery = true)
+    void lockAccountById(Long statusId);
 }

@@ -1,6 +1,5 @@
 package com.controller.user;
 
-import com.model.Quiz;
 import com.model.dto.ChangPasswordDTO;
 import com.model.jwt.AppUser;
 import com.service.jwt.user.IUserService;
@@ -56,5 +55,20 @@ public class UserController {
         System.out.println(userList);
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
-
+    @PostMapping("/{id}")
+    public ResponseEntity <AppUser> lockAccountByIdUser(@PathVariable Long id){
+        Optional<AppUser> user = userService.findById(id);
+        if(user.isPresent()) {
+            userService.lockAccountById(id);
+        }
+        return new ResponseEntity<>(user.get(),HttpStatus.OK);
+    }
+    @PostMapping("/user/{id}")
+    public ResponseEntity <AppUser> openAccountByIdUser(@PathVariable Long id){
+        Optional<AppUser> user = userService.findById(id);
+        if(user.isPresent()) {
+            userService.openAccountById(id);
+        }
+        return new ResponseEntity<>(user.get(),HttpStatus.OK);
+    }
 }

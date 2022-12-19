@@ -11,6 +11,4 @@ import java.util.List;
 public interface ICategoryRepository extends PagingAndSortingRepository<Category,Long> {
     @Query(value = "select quiz_id  from quiz_category where category_id = :categoryId", nativeQuery = true)
     List<Long> findQuizsIdByCategoryId(Long categoryId);
-
-
 }

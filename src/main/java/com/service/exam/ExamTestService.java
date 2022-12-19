@@ -6,6 +6,8 @@ import com.repository.exam.IExamTestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -14,7 +16,6 @@ public class ExamTestService implements IExamTestService{
 
     @Autowired
     private IExamTestRepository examTestRepository;
-
     @Override
     public Iterable<ExamTest> findAll() {
         return examTestRepository.findAll();
@@ -55,5 +56,4 @@ public class ExamTestService implements IExamTestService{
         });
         examTestRepository.save(examTest.get());
     }
-
 }

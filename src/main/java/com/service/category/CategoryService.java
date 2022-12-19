@@ -1,7 +1,8 @@
 package com.service.category;
 
 import com.model.Category;
-import com.model.Quiz;
+import com.model.ExamQuiz;
+import com.model.ExamTest;
 import com.repository.category.ICategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ public class CategoryService implements ICategory{
     public List<Long> findQuizIdByCategoryId(Long categoryId){
         return categoryRepository.findQuizsIdByCategoryId(categoryId);
     }
+
     @Override
     public Iterable<Category> findAll() {
         return categoryRepository.findAll();

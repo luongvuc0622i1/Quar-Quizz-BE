@@ -1,5 +1,4 @@
 package com.controller.exam;
-
 import com.model.ExamTest;
 import com.service.exam.IExamTestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +71,4 @@ public class ExamTestController {
         examTestService.changeNumberAnswer(examTestOptional);
         return examTestOptional.map(ExamTest -> new ResponseEntity<>(ExamTest, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
-
 }
