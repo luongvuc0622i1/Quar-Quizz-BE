@@ -42,8 +42,8 @@ public class ExamTestController {
     @PostMapping("")
     public ResponseEntity<ExamTest> createExamTest(@RequestBody ExamTest examTest) {
         examTestService.save(examTest);
-        Optional<ExamTest> examTestOptional = examTestService.findById(examTest.getId());
-        examTestService.changeNumberAnswer(examTestOptional);
+//        Optional<ExamTest> examTestOptional = examTestService.findById(examTest.getId());
+//        examTestService.changeNumberAnswer(examTestOptional);
         return new ResponseEntity<>(examTest, HttpStatus.CREATED);
     }
 
