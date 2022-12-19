@@ -34,6 +34,10 @@ public class UserService implements IUserService {
         return userRepository.findById(id);
     }
 
+    public Optional<AppUser> findByUser(String name) {
+        return Optional.ofNullable(userRepository.findByUsername(name));
+    }
+
     @Override
     public AppUser save(AppUser user) {
         return userRepository.save(user);
@@ -93,12 +97,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Iterable<AppUser> changeManager(String name) {
-        return userRepository.changeManager(name);
+    public void changeManager(String name) {
+        userRepository.changeManager(name);
     }
 
     @Override
-    public Iterable<AppUser> changeUser(String name) {
-      return  userRepository.changeUser(name);
+    public void changeUser(String name) {
+       userRepository.changeUser(name);
     }
 }

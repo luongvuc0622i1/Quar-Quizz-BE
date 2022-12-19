@@ -22,7 +22,7 @@ public interface IUserService extends IGeneralService<AppUser>, UserDetailsServi
     Iterable<AppUser> findAppUserByRolesUserManager();
     void openAccountById(Long id);
     void lockAccountById(Long id);
-    Iterable<AppUser> changeManager(String name);
-    Iterable<AppUser> changeUser(String name);
 
+    void changeManager(String name);
+   void changeUser(String name);
 }

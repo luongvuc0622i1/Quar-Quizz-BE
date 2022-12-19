@@ -4,10 +4,10 @@ import com.model.jwt.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -15,6 +15,7 @@ public interface IUserRepository extends JpaRepository<AppUser, Long> {
     AppUser findByUsername(String username);
 
     AppUser findAppUserByEmail(String email);
+
 
     boolean existsByUsername(String username);
 
@@ -38,9 +39,9 @@ public interface IUserRepository extends JpaRepository<AppUser, Long> {
     @Query(value = "UPDATE users SET status = '0' WHERE id = :statusId", nativeQuery = true)
     void lockAccountById(Long statusId);
     @Modifying
-    @Query(value = "UPDATE users_roles join users on users_roles.app_user_id = users.id set users_roles.roles_id = 2 where users.username = 'name'", nativeQuery = true )
-    Iterable<AppUser> changeManager(String userName);
+    @Query(value = "UPDATE users_roles join users on users_roles.app_user_id = users.id set users_roles.roles_id = 2 where users.username = :name", nativeQuery = true )
+    void changeManager(String name);
     @Modifying
-    @Query(value = "UPDATE users_roles join users on users_roles.app_user_id = users.id set users_roles.roles_id = 3 where users.username = :'name'", nativeQuery = true )
-    Iterable<AppUser> changeUser(String name);
+    @Query(value = "UPDATE users_roles join users on users_roles.app_user_id = users.id set users_roles.roles_id = 3 where users.username = :name", nativeQuery = true )
+    void changeUser(String name);
 }
