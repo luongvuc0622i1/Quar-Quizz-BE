@@ -20,6 +20,9 @@ public interface IUserService extends IGeneralService<AppUser>, UserDetailsServi
     AppUser findByUsername(String username);
 
     Iterable<AppUser> findAppUserByRolesUser();
+    Iterable<AppUser> findAppUserByRolesUserManager();
     void openAccountById(Long id);
     void lockAccountById(Long id);
+    void changeManager(String name);
+    void changeUser(Long id);
 }

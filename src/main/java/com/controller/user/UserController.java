@@ -55,6 +55,13 @@ public class UserController {
         System.out.println(userList);
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
+
+    @GetMapping("/user/getUserManagerRoles")
+    public ResponseEntity<Iterable<AppUser>> getAppUserByRoleUserManager() {
+        Iterable<AppUser> userList = userService.findAppUserByRolesUserManager();
+        System.out.println(userList);
+        return new ResponseEntity<>(userList, HttpStatus.OK);
+    }
     @PostMapping("admin/lock/{id}")
     public ResponseEntity <AppUser> lockAccountByIdUser(@PathVariable Long id){
         Optional<AppUser> user = userService.findById(id);

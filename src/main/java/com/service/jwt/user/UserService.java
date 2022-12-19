@@ -80,11 +80,25 @@ public class UserService implements IUserService {
         return userRepository.findAppUserByRolesUser();
     }
     @Override
+    public Iterable<AppUser> findAppUserByRolesUserManager() {
+        return userRepository.findAppUserByRolesUserManager();
+    }
+    @Override
     public void lockAccountById(Long id){
          userRepository.lockAccountById(id);
     }
     @Override
     public void openAccountById(Long id){
     userRepository.openAccountById(id);
+    }
+
+    @Override
+    public void changeManager(String name) {
+       userRepository.changeManager(name);
+    }
+
+    @Override
+    public void changeUser(Long id) {
+        userRepository.changeUser(id);
     }
 }
