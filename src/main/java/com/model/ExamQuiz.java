@@ -36,16 +36,6 @@ public class ExamQuiz {
     @NotNull
     private AppUser appUser;
 
-    private int status;
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
     public Long getId() {
         return id;
     }

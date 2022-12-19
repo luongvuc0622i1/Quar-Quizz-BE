@@ -32,12 +32,14 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
+//	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 	// login with FB
 	implementation 'org.springframework.boot:spring-boot-starter-social-facebook:1.5.22.RELEASE'
 	// Mail
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
 
 }
 

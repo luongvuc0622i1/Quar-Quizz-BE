@@ -43,17 +43,19 @@ public class ExamTestService implements IExamTestService{
 
     private ExamTest examTest;
 
-    @Override
-    public void changeNumberAnswer(Optional<ExamTest> examTest) {
 
-        Set<ExamQuiz> examQuizzes = examTest.get().getExamQuizzes();
-        examQuizzes.forEach((e) -> {
-            int count = 0;
-            if (e.getStatus() == 1) {
-               count++;
-            }
-            examTest.get().setNumOfTA(count);
-        });
-        examTestRepository.save(examTest.get());
-    }
+//    @Override
+//    public void changeNumberAnswer(Optional<ExamTest> examTest) {
+//
+//        Set<ExamQuiz> examQuizzes = examTest.get().getExamQuizzes();
+//        examQuizzes.forEach((e) -> {
+//            int count = 0;
+//            if (e.getStatus() == 1) {
+//               count++;
+//            }
+//            examTest.get().setNumOfTA(count);
+//        });
+//        examTestRepository.save(examTest.get());
+//    }
+
 }

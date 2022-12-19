@@ -26,25 +26,27 @@ public class ExamTestController {
         return new ResponseEntity<>(examTestList,HttpStatus.OK);
     }
 
-    @GetMapping("/findExamTestByUserId/{id}")
+    @GetMapping("/findByUserId/{id}")
     public ResponseEntity<Iterable<ExamTest>> findExamTestByUserId(@PathVariable Long id) {
         Iterable<ExamTest> examTests = examTestService.findExamTestsByUserId(id);
         return new ResponseEntity<>(examTests, HttpStatus.OK);
     }
 
-    @GetMapping("/findExamTestsById/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ExamTest> findExamTestsById(@PathVariable Long id) {
         Optional<ExamTest> examTestOptional = examTestService.findById(id);
         return examTestOptional.map(ExamTest -> new ResponseEntity<>(ExamTest, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     public ResponseEntity<ExamTest> createExamTest(@RequestBody ExamTest examTest) {
         examTestService.save(examTest);
+//        Optional<ExamTest> examTestOptional = examTestService.findById(examTest.getId());
+//        examTestService.changeNumberAnswer(examTestOptional);
         return new ResponseEntity<>(examTest, HttpStatus.CREATED);
     }
 
-    @PutMapping("/edit")
+    @PutMapping("/")
     public ResponseEntity<ExamTest> editExamQuiz(@PathVariable Long id, @RequestBody ExamTest examTest) {
         Optional<ExamTest> examTestOptional = examTestService.findById(id);
         if (!examTestOptional.isPresent()) {
@@ -55,7 +57,7 @@ public class ExamTestController {
         return new ResponseEntity<>(examTest, HttpStatus.OK);
     }
 
-    @DeleteMapping("/deleteById/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ExamTest> deleteExamTest(@PathVariable Long id) {
         Optional<ExamTest> examTestOptional = examTestService.findById(id);
         if (!examTestOptional.isPresent()) {
@@ -68,7 +70,7 @@ public class ExamTestController {
     @GetMapping("/setNumberAnswer/{id}")
     public ResponseEntity<ExamTest> setNumberAnswer(@PathVariable Long id) {
         Optional<ExamTest> examTestOptional = examTestService.findById(id);
-        examTestService.changeNumberAnswer(examTestOptional);
+//        examTestService.changeNumberAnswer(examTestOptional);
         return examTestOptional.map(ExamTest -> new ResponseEntity<>(ExamTest, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }
