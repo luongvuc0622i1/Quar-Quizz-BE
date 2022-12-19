@@ -71,7 +71,7 @@ public class ExamTestController {
     @GetMapping("/setNumberAnswer/{id}")
     public ResponseEntity<ExamTest> setNumberAnswer(@PathVariable Long id) {
         Optional<ExamTest> examTestOptional = examTestService.findById(id);
-        examTestService.changeNumberAnswer(examTestOptional);
+//        examTestService.changeNumberAnswer(examTestOptional);
         return examTestOptional.map(ExamTest -> new ResponseEntity<>(ExamTest, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
