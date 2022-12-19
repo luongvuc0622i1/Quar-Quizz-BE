@@ -55,7 +55,7 @@ public class UserController {
         System.out.println(userList);
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
-    @PostMapping("/{id}")
+    @PostMapping("admin/lock/{id}")
     public ResponseEntity <AppUser> lockAccountByIdUser(@PathVariable Long id){
         Optional<AppUser> user = userService.findById(id);
         if(user.isPresent()) {
@@ -63,7 +63,7 @@ public class UserController {
         }
         return new ResponseEntity<>(user.get(),HttpStatus.OK);
     }
-    @PostMapping("/user/{id}")
+    @PostMapping("admin/open/{id}")
     public ResponseEntity <AppUser> openAccountByIdUser(@PathVariable Long id){
         Optional<AppUser> user = userService.findById(id);
         if(user.isPresent()) {
