@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @PutMapping("/changePassword/{id}")
+    @PutMapping("changePassword/{id}")
     public ResponseEntity<AppUser> changePassword(@PathVariable Long id, @Valid @RequestBody ChangPasswordDTO changPasswordDTO) {
         Optional<AppUser> userOptional = userService.findById(id);
         if (!userOptional.isPresent()) {
@@ -42,21 +42,21 @@ public class UserController {
         return new ResponseEntity<>(optional.get(), HttpStatus.OK);
     }
 
-    @GetMapping("/user")
+    @GetMapping("user")
     public ResponseEntity<Iterable<AppUser>> getAll() {
         Iterable<AppUser> userList = userService.findAll();
         System.out.println(userList);
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
-    @GetMapping("/user/getUserRoles")
+    @GetMapping("manager/getUserRoles")
     public ResponseEntity<Iterable<AppUser>> getAppUserByRoleUser() {
         Iterable<AppUser> userList = userService.findAppUserByRolesUser();
         System.out.println(userList);
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
-    @GetMapping("/user/getUserManagerRoles")
+    @GetMapping("admin/getUserManagerRoles")
     public ResponseEntity<Iterable<AppUser>> getAppUserByRoleUserManager() {
         Iterable<AppUser> userList = userService.findAppUserByRolesUserManager();
         System.out.println(userList);
@@ -77,5 +77,13 @@ public class UserController {
             userService.openAccountById(id);
         }
         return new ResponseEntity<>(user.get(),HttpStatus.OK);
+    }
+    @GetMapping("changeManager")
+    public ResponseEntity<Iterable<AppUser>> changeManager(@RequestParam ("name") String name){
+        Iterable<AppUser> user=userService.changeManager(name);
+        if(!user.iterator().hasNext()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(user,HttpStatus.OK);
     }
 }

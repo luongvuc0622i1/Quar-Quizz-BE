@@ -29,7 +29,7 @@ public interface IUserRepository extends JpaRepository<AppUser, Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM users " +
             "JOIN users_roles ON users.id = users_roles.app_user_id " +
             "JOIN role ON users_roles.roles_id = role.id " +
-            "WHERE roles_id = 3 AND roles_id = 2;")
+            "WHERE roles_id = 3 OR roles_id = 2;")
     Iterable<AppUser> findAppUserByRolesUserManager();
     @Modifying
     @Query(value = "UPDATE users SET status = '1' WHERE id = :statusId", nativeQuery = true)
@@ -38,9 +38,9 @@ public interface IUserRepository extends JpaRepository<AppUser, Long> {
     @Query(value = "UPDATE users SET status = '0' WHERE id = :statusId", nativeQuery = true)
     void lockAccountById(Long statusId);
     @Modifying
-    @Query(value = "UPDATE users_roles join users on users_roles.app_user_id = users.id set users_roles.roles_id = 3 where users.username = :'name'", nativeQuery = true )
-    void changeManager(String userName);
+    @Query(value = "UPDATE users_roles join users on users_roles.app_user_id = users.id set users_roles.roles_id = 2 where users.username = 'name'", nativeQuery = true )
+    Iterable<AppUser> changeManager(String userName);
     @Modifying
-    @Query(value = "UPDATE users_roles SET roles_id=3 WHERE users.id = :id", nativeQuery = true )
-    void changeUser(Long id);
+    @Query(value = "UPDATE users_roles join users on users_roles.app_user_id = users.id set users_roles.roles_id = 3 where users.username = :'name'", nativeQuery = true )
+    Iterable<AppUser> changeUser(String name);
 }

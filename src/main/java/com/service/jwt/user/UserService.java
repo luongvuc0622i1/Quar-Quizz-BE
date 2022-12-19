@@ -93,12 +93,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void changeManager(String name) {
-       userRepository.changeManager(name);
+    public Iterable<AppUser> changeManager(String name) {
+        return userRepository.changeManager(name);
     }
 
     @Override
-    public void changeUser(Long id) {
-        userRepository.changeUser(id);
+    public Iterable<AppUser> changeUser(String name) {
+      return  userRepository.changeUser(name);
     }
 }
