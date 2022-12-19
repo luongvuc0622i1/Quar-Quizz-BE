@@ -37,8 +37,8 @@ public class ExamQuizController {
     @PostMapping("")
     public ResponseEntity<ExamQuiz> createExamQuiz(@RequestBody ExamQuiz examQuiz) {
         examQuizService.save(examQuiz);
-        Optional<ExamQuiz> examQuizOptional = examQuizService.findById(examQuiz.getId());
-        examQuizService.saveExamQuiz(examQuizOptional);
+//        Optional<ExamQuiz> examQuizOptional = examQuizService.findById(examQuiz.getId());
+//        examQuizService.saveExamQuiz(examQuizOptional);
         return new ResponseEntity<>(examQuiz, HttpStatus.CREATED);
     }
 
