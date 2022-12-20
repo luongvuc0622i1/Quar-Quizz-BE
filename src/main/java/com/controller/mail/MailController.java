@@ -2,21 +2,20 @@ package com.controller.mail;
 
 import com.model.dto.Mail;
 import com.model.jwt.AppUser;
+import com.model.jwt.MessageResponse;
 import com.service.jwt.user.IUserService;
 import com.service.mail.IMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/mail")
 public class MailController {
     @Autowired
@@ -42,8 +41,8 @@ public class MailController {
     }
 
     @PostMapping("/sendOtp")
-    public ResponseEntity<?> sendOtp(@RequestParam String username) {
-        Optional<AppUser> user = Optional.ofNullable(userService.findByUsername(username));
+    public ResponseEntity<?> sendOtp(@RequestParam String email) {
+        Optional<AppUser> user = Optional.ofNullable(userService.findAppUserByEmail(email));
         if (!user.isPresent()) {
             return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
         }
@@ -56,7 +55,7 @@ public class MailController {
         mail.setMailTo(user.get().getEmail());
         mail.setMailFrom("quarquizteam@gmail.com");
         mail.setMailSubject("Password Reset");
-        mail.setMailContent("Hi " + username + ",\n\n" +
+        mail.setMailContent("Hi " + user.get().getUsername() + ",\n\n" +
                 "OTP code " + OTP + " is valid for 1 time to change password, used to authenticate the password change request at Quar Quizz website. " +
                 "For security reasons, do not share this OTP with anyone! \n\n" +
                 "Best, \n" +
