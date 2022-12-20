@@ -5,6 +5,8 @@ import com.service.IGeneralService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import javax.validation.constraints.Pattern;
+
 public interface IUserService extends IGeneralService<AppUser>, UserDetailsService {
     UserDetails loadUserByUsername(String username);
 
@@ -24,5 +26,8 @@ public interface IUserService extends IGeneralService<AppUser>, UserDetailsServi
     void lockAccountById(Long id);
 
     void changeManager(String name);
-   void changeUser(String name);
+    void changeUser(String name);
+
+    String randomPassword();
+
 }

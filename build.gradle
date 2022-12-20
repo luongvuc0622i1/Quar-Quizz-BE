@@ -39,6 +39,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-social-facebook:1.5.22.RELEASE'
 	// Mail
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
 
 
 }

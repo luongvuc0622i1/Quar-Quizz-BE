@@ -45,6 +45,8 @@ public class AppUser {
 
     private String phone;
 
+    private String otp;
+
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String status;
 
