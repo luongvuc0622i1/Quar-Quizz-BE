@@ -1,9 +1,11 @@
 package com.controller.user;
 
 import com.model.dto.ChangPasswordDTO;
+import com.model.dto.Mail;
 import com.model.jwt.AppUser;
 import com.service.jwt.user.IUserService;
 import com.service.jwt.user.UserService;
+import com.service.mail.IMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,9 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private IMailService mailService;
+
     @PutMapping("user/changePassword/{id}")
     public ResponseEntity<AppUser> changePassword(@PathVariable Long id, @Valid @RequestBody ChangPasswordDTO changPasswordDTO) {
         Optional<AppUser> userOptional = userService.findById(id);
@@ -28,7 +33,18 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (userOptional.get().getPassword().equals(changPasswordDTO.getOldPassword())) {
             userOptional.get().setPassword(changPasswordDTO.getNewPassword());
-            return new ResponseEntity<>(userService.save(userOptional.get()), HttpStatus.ACCEPTED);
+            userService.save(userOptional.get());
+            Mail mail = new Mail();
+            mail.setMailTo(userOptional.get().getEmail());
+            mail.setMailFrom("quarquizteam@gmail.com");
+            mail.setMailSubject("Password Change Successfully");
+            mail.setMailContent("Hi " + userOptional.get().getUsername() + ",\n\n" +
+                    "Your password has been changed successfully!\n" +
+                    "Thank you for using our service, enjoy it!\n\n" +
+                    "Best,\n" +
+                    "quarquizzteam");
+            mailService.sendEmail(mail);
+            return new ResponseEntity<>(userOptional.get(), HttpStatus.ACCEPTED);
         } else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }

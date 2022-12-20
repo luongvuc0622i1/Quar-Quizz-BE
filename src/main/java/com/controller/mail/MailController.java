@@ -41,20 +41,6 @@ public class MailController {
         return new ResponseEntity<>(mail, HttpStatus.OK);
     }
 
-    @PostMapping("/accept")
-    public ResponseEntity<Mail> acceptRegistration(@RequestParam String email, @RequestParam String username) {
-        Mail mail = new Mail();
-        mail.setMailTo(email);
-        mail.setMailFrom("quarquizteam@gmail.com");
-        mail.setMailSubject("Thanks for signing up.");
-        mail.setMailContent("Hello " + username + "," + "\n\nThank you for signing up for our team!" +
-                "We are looking forward to seeing you there.\n\n" +
-                "Best, \n" +
-                "Quarquizzteam");
-        mailService.sendEmail(mail);
-        return new ResponseEntity<>(mail, HttpStatus.OK);
-    }
-
     @PostMapping("/sendOtp")
     public ResponseEntity<?> sendOtp(@RequestParam String username) {
         Optional<AppUser> user = Optional.ofNullable(userService.findByUsername(username));

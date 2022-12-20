@@ -3,6 +3,7 @@ package com.controller.login;
 
 import com.model.dto.JwtResponse;
 import com.model.dto.LoginForm;
+import com.model.dto.Mail;
 import com.model.dto.TokenDto;
 import com.model.jwt.AppUser;
 import com.model.jwt.MessageResponse;
@@ -10,6 +11,7 @@ import com.model.jwt.Role;
 import com.service.jwt.JwtService;
 import com.service.jwt.role.IRoleService;
 import com.service.jwt.user.IUserService;
+import com.service.mail.IMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +44,9 @@ public class LoginController {
     private IUserService userService;
     @Autowired
     private IRoleService roleService;
+
+    @Autowired
+    private IMailService mailService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginForm loginForm) {
@@ -77,6 +82,15 @@ public class LoginController {
             roles.add(roleService.findById(3L).get());
             user.setRoles(roles);
             AppUser appUser = userService.save(user);
+            Mail mail = new Mail();
+            mail.setMailTo(user.getEmail());
+            mail.setMailFrom("quarquizteam@gmail.com");
+            mail.setMailSubject("Thanks for signing up.");
+            mail.setMailContent("Hello " + user.getUsername() + "," + "\n\nThank you for signing up for our team!" +
+                    "We are looking forward to seeing you there.\n\n" +
+                    "Best, \n" +
+                    "Quarquizzteam");
+            mailService.sendEmail(mail);
             return new ResponseEntity<>(appUser, HttpStatus.OK);
         } if (userService.existsByUsername(user.getUsername())) {
             return ResponseEntity.badRequest().body(new MessageResponse("nouser"));
