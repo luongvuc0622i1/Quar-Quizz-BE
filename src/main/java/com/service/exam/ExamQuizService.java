@@ -34,11 +34,4 @@ public class ExamQuizService implements IExamQuizService{
         examQuizRepository.deleteById(id);
     }
 
-    @Override
-    public void saveExamQuiz (Optional<ExamQuiz> model) {
-         examQuizRepository.save(model.get());
-    }
-
-
-
 }

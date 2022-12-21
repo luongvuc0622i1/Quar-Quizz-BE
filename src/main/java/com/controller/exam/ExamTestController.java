@@ -26,12 +26,6 @@ public class ExamTestController {
         return new ResponseEntity<>(examTestList,HttpStatus.OK);
     }
 
-    @GetMapping("/findByUserId/{id}")
-    public ResponseEntity<Iterable<ExamTest>> findExamTestByUserId(@PathVariable Long id) {
-        Iterable<ExamTest> examTests = examTestService.findExamTestsByUserId(id);
-        return new ResponseEntity<>(examTests, HttpStatus.OK);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<ExamTest> findExamTestsById(@PathVariable Long id) {
         Optional<ExamTest> examTestOptional = examTestService.findById(id);
@@ -41,8 +35,6 @@ public class ExamTestController {
     @PostMapping("")
     public ResponseEntity<ExamTest> createExamTest(@RequestBody ExamTest examTest) {
         examTestService.save(examTest);
-//        Optional<ExamTest> examTestOptional = examTestService.findById(examTest.getId());
-//        examTestService.changeNumberAnswer(examTestOptional);
         return new ResponseEntity<>(examTest, HttpStatus.CREATED);
     }
 
@@ -67,10 +59,4 @@ public class ExamTestController {
         return new ResponseEntity<>(examTestOptional.get(), HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/setNumberAnswer/{id}")
-    public ResponseEntity<ExamTest> setNumberAnswer(@PathVariable Long id) {
-        Optional<ExamTest> examTestOptional = examTestService.findById(id);
-//        examTestService.changeNumberAnswer(examTestOptional);
-        return examTestOptional.map(ExamTest -> new ResponseEntity<>(ExamTest, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
 }

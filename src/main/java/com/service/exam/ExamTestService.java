@@ -35,27 +35,4 @@ public class ExamTestService implements IExamTestService{
         examTestRepository.deleteById(id);
     }
 
-    @Override
-    public Iterable<ExamTest> findExamTestsByUserId(Long user_id) {
-        return examTestRepository.findExamTestsByAppUser(user_id);
-    }
-
-
-    private ExamTest examTest;
-
-
-//    @Override
-//    public void changeNumberAnswer(Optional<ExamTest> examTest) {
-//
-//        Set<ExamQuiz> examQuizzes = examTest.get().getExamQuizzes();
-//        examQuizzes.forEach((e) -> {
-//            int count = 0;
-//            if (e.getStatus() == 1) {
-//               count++;
-//            }
-//            examTest.get().setNumOfTA(count);
-//        });
-//        examTestRepository.save(examTest.get());
-//    }
-
 }
