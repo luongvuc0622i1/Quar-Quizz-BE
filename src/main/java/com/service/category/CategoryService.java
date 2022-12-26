@@ -1,8 +1,6 @@
 package com.service.category;
 
 import com.model.Category;
-import com.model.ExamQuiz;
-import com.model.ExamTest;
 import com.repository.category.ICategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +8,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 @Service
-public class CategoryService implements ICategory{
+public class CategoryService implements ICategoryService {
     @Autowired
     private ICategoryRepository categoryRepository;
+
+    public CategoryService(ICategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
+
     public List<Long> findQuizIdByCategoryId(Long categoryId){
         return categoryRepository.findQuizsIdByCategoryId(categoryId);
     }
@@ -40,5 +43,10 @@ public class CategoryService implements ICategory{
     @Override
     public void remove(Long id) {
         categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Category> findByName(String name) {
+        return categoryRepository.findByName(name);
     }
 }
