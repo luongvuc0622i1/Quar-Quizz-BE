@@ -97,4 +97,13 @@ public class QuizService implements IQuizService {
 
         return quizRepository.findQuizzesByLevelContaining(level);
     }
+
+    @Override
+    public TypeQuiz saveType(TypeQuiz typeQuiz) {
+        return typeRepository.save(typeQuiz);
+    }
+    @Override
+    public Level saveLevel(Level level) {
+        return levelRepository.save(level);
+    }
 }
