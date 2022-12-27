@@ -26,6 +26,11 @@ public class QuizService implements IQuizService {
 
     @Autowired
     private ILevelRepository levelRepository;
+
+    public QuizService(IQuizRepository quizRepository) {
+        this.quizRepository = quizRepository;
+    }
+
     @Override
     public Iterable<Quiz> findAll() {
         return quizRepository.findAll();
