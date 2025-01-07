@@ -26,6 +26,11 @@ public class QuizService implements IQuizService {
 
     @Autowired
     private ILevelRepository levelRepository;
+
+    public QuizService(IQuizRepository quizRepository) {
+        this.quizRepository = quizRepository;
+    }
+
     @Override
     public Iterable<Quiz> findAll() {
         return quizRepository.findAll();
@@ -96,5 +101,14 @@ public class QuizService implements IQuizService {
     public Iterable<Quiz> findQuizByLevelContaining(String level) {
 
         return quizRepository.findQuizzesByLevelContaining(level);
+    }
+
+    @Override
+    public TypeQuiz saveType(TypeQuiz typeQuiz) {
+        return typeRepository.save(typeQuiz);
+    }
+    @Override
+    public Level saveLevel(Level level) {
+        return levelRepository.save(level);
     }
 }

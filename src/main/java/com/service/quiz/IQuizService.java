@@ -11,7 +11,11 @@ public interface IQuizService extends IGeneralService<Quiz> {
 
     Iterable<TypeQuiz> findAllTypeQuiz();
 
+    TypeQuiz saveType(TypeQuiz typeQuiz);
+
     Page<Level> findAllLevel(Pageable pageable);
+
+    Level saveLevel(Level level);
 
 //    Page<Test> findAllTest(Pageable pageable);
 
